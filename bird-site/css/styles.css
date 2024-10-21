@@ -1,5 +1,7 @@
 /* Basic reset */
 body {
+    padding-left: 15em;
+    padding-right: 17em;
     margin: 20px;
     height: 100vh;
     background-color: #222;
@@ -15,18 +17,20 @@ h1, h2 {
     color: white;
 }
 
-
 .grid {
     display: grid;
-    grid-template-columns: repeat(12, 40px);
-    grid-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Responsive columns */
+    grid-gap: 15px; /* Reduce grid gap for smaller screens */
     justify-content: center;
     padding-bottom: 50px;
+    max-width: 100%; /* Ensure grid doesn't overflow */
+    margin: 0 auto; /* Center the grid */
 }
 
 .box {
-    width: 40px;
-    height: 40px;
+    width: 100%; /* Make boxes fill the available grid cell */
+    height: auto; /* Ensure height adjusts with width */
+    padding-bottom: 100%; /* This creates a square box by setting height proportional to width */
     background-color: white; /* Default color for future practices */
     border: 1px solid #333;
     transition: background-color 0.3s;
@@ -34,4 +38,17 @@ h1, h2 {
 
 .box.red {
     background-color: red; /* Passed practices */
+}
+
+/* Media queries for better mobile responsiveness */
+@media (min-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Slightly larger boxes for medium screens */
+    }
+}
+
+@media (min-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Even larger boxes for larger screens */
+    }
 }
